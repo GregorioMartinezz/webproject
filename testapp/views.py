@@ -2,6 +2,7 @@ from datetime import datetime
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
+#get
 def get_example(request):
     response = {'request': {'time': datetime.now().isoformat(),
                             'method': request.method,
@@ -10,6 +11,7 @@ def get_example(request):
                             'headers': dict(request.headers)}}
     return JsonResponse(response, safe=False, json_dumps_params={'indent': 2})
 
+#post
 @csrf_exempt
 def post_example(request):
     response = {'request': {'time': datetime.now().isoformat(),
