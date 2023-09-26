@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -29,3 +30,37 @@ def gallery(request):
 def gallery_photo(request, photo):
     context = {'photo': photo}
     return render(request, 'testapp/gallery_photo.html', context)
+
+
+# Crear post con sumar, restar, multiplicar y dividir
+@csrf_exempt
+def sumar(request):
+    ayb = json.loads(request.body.decode())
+    a = ayb["a"]
+    b = ayb["b"]
+    response = int(a) + int(b)
+    return JsonResponse(response, safe=False, json_dumps_params={'indent': 2})
+
+@csrf_exempt
+def restar(request):
+    ayb = json.loads(request.body.decode())
+    a = ayb["a"]
+    b = ayb["b"]
+    response = int(a) - int(b)
+    return JsonResponse(response, safe=False, json_dumps_params={'indent': 2})
+
+@csrf_exempt
+def multiplicar(request):
+    ayb = json.loads(request.body.decode())
+    a = ayb["a"]
+    b = ayb["b"]
+    response = int(a) * int(b)
+    return JsonResponse(response, safe=False, json_dumps_params={'indent': 2})
+
+@csrf_exempt
+def dividir(request):
+    ayb = json.loads(request.body.decode())
+    a = ayb["a"]
+    b = ayb["b"]
+    response = int(a) / int(b)
+    return JsonResponse(response, safe=False, json_dumps_params={'indent': 2})
